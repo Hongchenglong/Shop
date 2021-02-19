@@ -19,30 +19,45 @@ import com.oeong.service.OEONG_USERDao;
 public class DoUserDel extends HttpServlet {
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=utf-8");
-		
+
 		// 接收参数
 		String id = request.getParameter("id");
-		
-		// 加入数据库中的用户表
+
 		int count = OEONG_USERDao.del(id);
-		
+
 		// 成功或失败 重定向到哪
 		if (count > 0) {
-			response.sendRedirect("admin_douserselect?cp="+request.getParameter("cpage"));
+			response.sendRedirect("admin_douserselect?cp=" + request.getParameter("cpage"));
 		} else {
 			PrintWriter out = response.getWriter();
-			
+
 			out.write("<script>");
 			out.write("alert('用户删除失败')");
-			out.write("location.href='manage/admin_douserselect?cp="+request.getParameter("cpage")+"'"); // ?
+			out.write("location.href='manage/admin_douserselect?cp=" + request.getParameter("cpage") + "'"); // ?
 			out.write("</script>");
 		}
-		
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
+
+		// 接收参数
+		String ids[] = request.getParameterValues("id[]");
+
+		for (String id : ids) {
+			OEONG_USERDao.del(id);
+		}
+
+		// 成功或失败 重定向到哪
+		response.sendRedirect("admin_douserselect");
+	}
 }
