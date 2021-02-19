@@ -11,7 +11,11 @@
             </c:if>
             
             <c:if test="${isLogin == 1}">
-            <b>你好：</b><a href="login.jsp" id="login">${name.USER_NAME}</a>
+            <b>你好：</b><a href="index.jsp" id="login">${name.USER_NAME}</a>
+            </c:if>
+            
+            <c:if test="${isAdminLogin == 1}">
+            <b>你好：</b><a href="manage/admin_index.jsp" id="login">进入后台</a>
             </c:if>
             
             </p>

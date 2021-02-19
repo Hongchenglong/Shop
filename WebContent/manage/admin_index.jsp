@@ -4,7 +4,7 @@
     <!--/sidebar-->
     <div class="main-wrap">
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span>欢迎使用『学习猿地』博客程序，建博的首选工具。</span></div>
+            <div class="crumb-list"><i class="icon-font">&#xe06b;</i><span></span></div>
         </div>
         <div class="result-wrap">
             <div class="result-title">
@@ -60,7 +60,6 @@
             <div class="result-content">
                 <ul class="sys-info-list">
                     <li>
-                        <label class="res-lab">更多模板：</label><span class="res-info"><a href="http://www.lmonkey.com/" target="_blank">学习猿地</a></span>
                     </li>
                 </ul>
             </div>
