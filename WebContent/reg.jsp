@@ -31,7 +31,7 @@
 			<p>
 				<input type="text" name="userName" value=""
 					onfocus="FocusItem(this)" onblur="CheckItem(this)"
-					placeholder="用户名"><span class="error">用户名不能为空</span>
+					placeholder="用户名"><span class="error"></span>
 			</p>
 			<p>
 				<input type="text" name="name" value="" onfocus="FocusItem(this)"
@@ -53,7 +53,7 @@
 					checked="checked">女
 			</p>
 			<p>
-				<input type="date" name="birthday" value="" placeholder="生日"><span></span>
+				<input type="date" name="birthday" value="" placeholder="生日" required><span></span>
 			</p>
 			<p>
 				<input type="text" name="email" value="" placeholder="邮箱"><span></span>

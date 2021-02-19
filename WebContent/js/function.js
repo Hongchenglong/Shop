@@ -4,8 +4,8 @@ function change(img) {
 	img.src = "getcode?" + new Date().getTime(); // 加时间或随机数
 }
 
-
-function FocusItem(obj) { // 点击输入框时，去除后面的error类
+// 点击输入框时，清空后面的error类
+function FocusItem(obj) { 
 	if ($(obj).attr('name') == 'code') {
 		$(obj).next().next().html('').removeClass('error');
 	} else {
@@ -13,7 +13,7 @@ function FocusItem(obj) { // 点击输入框时，去除后面的error类
 	}
 }
 
-// 检查
+// 检查某一input标签
 var flag = true;//标记位
 function CheckItem(obj) {
 	var msgBox = $(obj).next('span');
@@ -84,17 +84,13 @@ function CheckItem(obj) {
 	}
 }
 
-
-
+// 检查所有input标签
 function checkForm(frm) {
 	var els = frm.getElementsByTagName('input');
 	//onblur 这个属性才需要验证
 	for (var i = 0; i < els.length; i++) {
-
 		if (els[i] != null) {
-
-			if (els[i].getAttribute("onblur")) {
-
+			if (els[i].getAttribute("onblur")) { // 如果有onblur属性则检查
 				CheckItem(els[i]);
 			}
 		}
