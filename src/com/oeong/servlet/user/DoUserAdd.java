@@ -53,8 +53,5 @@ public class DoUserAdd extends HttpServlet {
 			out.write("location.href='manage/admin_useradd"); // ?
 			out.write("</script>");
 		}
-		
-		
 	}
-
 }

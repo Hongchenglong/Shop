@@ -28,7 +28,13 @@ public class Basedao {
 		}
 		return conn;
 	}
-
+	
+	/**
+	 * 执行
+	 * @param sql
+	 * @param params
+	 * @return
+	 */
 	public static int exectuIUD(String sql, Object[] params) {
 		int count = 0;
 		Connection conn = Basedao.getconn();

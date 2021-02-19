@@ -48,7 +48,6 @@
 						<th>操作</th>
 					</tr>
 					
-					
 					<!-- jstl -->
 					<c:forEach var="u" items="${userlist}">
 						<tr>
@@ -59,8 +58,21 @@
 							<td>${u.USER_SEX=='T'?'男':'女'}</td>
 							<td>${u.USER_EMAIL}</td>
 							<td>${u.USER_MOBILE}</td>
-							<td><a class="link-update" href="admin_touserupdate?id=${u.USER_ID}&cpage=${cpage}">修改</a> <a
-								class="link-del" href="#">删除</a></td>
+							<td><a class="link-update" href="admin_touserupdate?id=${u.USER_ID}&cpage=${cpage}">修改</a> 
+							
+							<!-- 删除普通用户 -->
+							<c:if test="${u.USER_STATUS==1}">
+							<a class="link-del" href="javascript:Delete('你确定要删除用户【${u.USER_NAME}】吗？', 'admin_douserdel?id=${u.USER_ID}&cpage=${cpage}')">删除</a>
+							</c:if>
+							<script>
+								function Delete(mess, url) {
+									if (confirm(mess)) {
+										location.href=url;
+									}
+								}
+							</script> 
+							</td>
+							
 						</tr>
 					</c:forEach>
 				</table>

@@ -162,4 +162,16 @@ public class OEONG_USERDao {
 		}
 		return u;
 	}
+	
+	/**
+	 * 删除单个用户
+	 * 
+	 * @param u
+	 * @return
+	 */
+	public static int del(String id) {
+		String sql = "delete from OEONG_USER where USER_ID=? and USER_STATUS!=2";
+		Object[] params = { id };
+		return Basedao.exectuIUD(sql, params);
+	}
 }
