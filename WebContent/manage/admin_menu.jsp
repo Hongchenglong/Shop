@@ -20,7 +20,7 @@
         </div>
         <div class="top-info-wrap">
             <ul class="top-info-list clearfix">
-                <li><a href="#">管理员</a></li>
+                <li><a href="#">管理员: ${name.USER_NAME}</a></li>
                 <li><a href="#">修改密码</a></li>
                 <li><a href="/Shop/manage/adminlogout">退出</a></li>
             </ul>
