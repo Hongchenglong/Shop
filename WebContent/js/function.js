@@ -1,7 +1,7 @@
 
 // 更换验证码
 function change(img) {
-	img.src = "getcode?" + new Date().getTime();
+	img.src = "getcode?" + new Date().getTime(); // 加时间或随机数
 }
 
 
@@ -24,11 +24,11 @@ function CheckItem(obj) {
 				msgBox.addClass('error');
 				flag = false;
 			} else {
+				// 使用Ajax请求
 				var url = "usernamecheck?name=" + encodeURI($(obj).val()) + "&" + new Date().getTime();
-				//"false" "true"
-				$.get(url, function (date) {
-					if (date == "false") {
-						msgBox.html('用户名已存在');
+				$.get(url, function (data) {
+					if (data == "false") {
+						msgBox.html('用户名已存在!');
 						msgBox.addClass('error');
 						flag = false;
 					} else {
@@ -69,8 +69,8 @@ function CheckItem(obj) {
 				flag = false
 			} else {
 				var url = "checkusernum?num=" + encodeURI($(obj).val()) + "&" + new Date().getTime();
-				$.get(url, function (numdata) {
-					if (numdata == 'false') {
+				$.get(url, function (data) {
+					if (data == "false") {
 						numshow.html('验证码输入有误');
 						numshow.addClass('error');
 						flag = false;

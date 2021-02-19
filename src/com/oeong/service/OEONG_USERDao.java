@@ -163,6 +163,32 @@ public class OEONG_USERDao {
 		return u;
 	}
 	
+	public static int selectByName(String id) {
+		int count = 0;
+		// 声明结果集
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		// 获取连接对象
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "";
+			sql = "select count(*) from OEONG_USER  where USER_ID = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return count;
+	}
+	
 	/**
 	 * 删除单个用户
 	 * 
