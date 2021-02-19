@@ -26,7 +26,7 @@
 	<!-------------------reg-------------------------->
 	<div class="reg">
 		<form action="register" method="post"
-			onsubmit="return checkForm(this)">
+			onsubmit="">
 			<!-- <p><h1>用户注册</h1></p> -->
 			<p>
 				<input type="text" name="userName" value=""

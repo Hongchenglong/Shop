@@ -50,8 +50,8 @@ public class Register extends HttpServlet {
 			PrintWriter out = response.getWriter();
 
 			out.write("<script>");
-			out.write("alert('用户注册失败')");
-			out.write("location.href='reg.jsp");
+			out.write("alert('用户注册失败');");
+			out.write("location.href='reg.jsp'");
 			out.write("</script>");
 		}
 	}
