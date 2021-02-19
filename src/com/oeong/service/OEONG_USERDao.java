@@ -189,6 +189,59 @@ public class OEONG_USERDao {
 		return count;
 	}
 	
+	public static int selectByNM(String userName, String passWord) {
+		int count = 0;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "";
+			sql = "select count(*) from OEONG_USER where USER_ID = ? and USER_PASSWORD = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userName);
+			ps.setString(2, passWord);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return count;
+	}
+	
+	public static OEONG_USER selectAdmin(String userName, String passWord) {
+		OEONG_USER u = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "";
+			sql = "select o.*, DATE_FORMAT(o.user_birthday, '%Y-%m-%d')birthday from OEONG_USER o where USER_ID = ? and USER_PASSWORD = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, userName);
+			ps.setString(2, passWord);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				u = new OEONG_USER(rs.getString("USER_ID"), rs.getString("USER_NAME"), rs.getString("USER_PASSWORD"),
+						rs.getString("USER_SEX"), rs.getString("birthday"), rs.getString("USER_IDENTITY_CODE"),
+						rs.getString("USER_EMAIL"), rs.getString("USER_MOBILE"), rs.getString("USER_ADDRESS"),
+						rs.getInt("USER_STATUS"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return u;
+	}
+	
 	/**
 	 * 删除单个用户
 	 * 
