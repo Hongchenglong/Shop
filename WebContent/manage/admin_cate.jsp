@@ -45,37 +45,22 @@
 							<tr>
 								<td>${cate.CATE_ID}</td>
 								<td>|-${cate.CATE_NAME}</td>
-								<td><a href="admin_tocateupdate?id=${cate.CATE_ID}">修改</a> <a href="">删除</a></td>
+								<td><a href="admin_tocateupdate?id=${cate.CATE_ID}">修改</a> <a href="javascript:catedel(${cate.CATE_ID})">删除</a></td>
 							</tr>
 							<c:forEach var="zcate" items="${catelist}">
 								<c:if test="${zcate.CATE_PARENT_ID == cate.CATE_ID}">
 									<tr>
 										<td>${zcate.CATE_ID}</td>
 										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-${zcate.CATE_NAME}</td>
-										<td><a href="admin_tocateupdate?id=${zcate.CATE_ID}">修改</a> <a href="">删除</a></td>
+										<td><a href="admin_tocateupdate?id=${zcate.CATE_ID}">修改</a> <a href="javascript:catedel(${zcate.CATE_ID})">删除</a></td>
 									</tr>
 								</c:if>
 							</c:forEach>
 						</c:if>
 						<script>
-							function Delete(mess, url) {
-								if (confirm(mess)) {
-									location.href = url;
-								}
-							}
-
-							function selall(o) {
-								var a = document.getElementsByName('id[]');
-								for (var i = 0; i < a.length; i++) {
-									a[i].checked = o.checked;
-								}
-							}
-
-							function delmore(mess, formname) {
-								if (confirm(mess)) {
-									var form = document
-											.getElementById(formname);
-									form.submit();
+							function catedel(id) {
+								if (confirm("确定要删除这个分类吗？")) {
+									location.href = "admin_docatedel?id=" + id;
 								}
 							}
 						</script>

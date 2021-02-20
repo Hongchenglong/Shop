@@ -86,4 +86,10 @@ public class OEONG_CATEGORYDao {
 		
 		return Basedao.exectuIUD(sql, params);
 	}
+	
+	public static int del(int id) {
+		String sql = "delete from OEONG_CATEGORY where CATE_ID=?";
+		Object[] params = {id};
+		return Basedao.exectuIUD(sql, params);
+	}
 }
