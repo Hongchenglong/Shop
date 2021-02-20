@@ -45,14 +45,14 @@
 							<tr>
 								<td>${cate.CATE_ID}</td>
 								<td>|-${cate.CATE_NAME}</td>
-								<td><a href="">修改</a> <a href="">删除</a></td>
+								<td><a href="admin_tocateupdate?id=${cate.CATE_ID}">修改</a> <a href="">删除</a></td>
 							</tr>
 							<c:forEach var="zcate" items="${catelist}">
 								<c:if test="${zcate.CATE_PARENT_ID == cate.CATE_ID}">
 									<tr>
 										<td>${zcate.CATE_ID}</td>
 										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-${zcate.CATE_NAME}</td>
-										<td><a href="">修改</a> <a href="">删除</a></td>
+										<td><a href="admin_tocateupdate?id=${zcate.CATE_ID}">修改</a> <a href="">删除</a></td>
 									</tr>
 								</c:if>
 							</c:forEach>
