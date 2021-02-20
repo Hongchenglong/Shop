@@ -37,4 +37,15 @@ public class OEONG_CATEGORYDao {
 		}
 		return list;
 	}
+	
+	public static int insert(OEONG_CATEGORY cate) {
+		String sql = "insert into OEONG_CATEGORY values(null, ?, ?)";
+
+		Object[] params = { 
+				cate.getCATE_NAME(),
+				cate.getCATE_PARENT_ID(),
+		};
+		
+		return Basedao.exectuIUD(sql, params);
+	}
 }

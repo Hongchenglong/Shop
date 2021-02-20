@@ -29,7 +29,7 @@
 		<form action="admin_douserdel" id="myform" name="myform" method="post">
 			<div class="result-title">
 				<div class="result-list">
-					<a href="#"><i class="icon-font"></i>新增分类</a>
+					<a href="admin_tocateadd"><i class="icon-font"></i>新增分类</a>
 				</div>
 			</div>
 			<div class="result-content">
