@@ -92,4 +92,37 @@ public class OEONG_CATEGORYDao {
 		Object[] params = {id};
 		return Basedao.exectuIUD(sql, params);
 	}
+	
+	/**
+	 * 查询分类，子分类和父分类
+	 * @param flag flag="father" flag="child"
+	 * @return
+	 */
+	public static ArrayList<OEONG_CATEGORY> selectCate(String flag) {
+		ArrayList<OEONG_CATEGORY> list = new ArrayList<OEONG_CATEGORY>();
+		ResultSet rs = null; // 结果集
+		PreparedStatement ps = null; // 预处理
+		Connection conn = Basedao.getconn(); 
+
+		try {
+			String sql = "";
+			if (flag != null && flag.equals("father")) {
+				sql = "select * from OEONG_CATEGORY where CATE_PARENT_ID = 0";
+			} else {
+				sql = "select * from OEONG_CATEGORY where CATE_PARENT_ID != 0";
+			}
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				OEONG_CATEGORY c = new OEONG_CATEGORY(rs.getInt("CATE_ID"), rs.getString("CATE_NAME"), rs.getInt("CATE_PARENT_ID"));
+				list.add(c);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return list;
+	}
 }
