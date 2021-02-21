@@ -26,7 +26,7 @@ public class AdminLogout extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.write("<script>");
 		out.write("alert('退出成功');");
-		out.write("location.href='/Shop/login.jsp';");
+		out.write("location.href='login.jsp';");
 		out.write("</script>");
 	}
 }

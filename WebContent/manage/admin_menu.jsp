@@ -39,7 +39,7 @@
                     <ul class="sub-menu">
                         <li><a href="/Shop/manage/admin_douserselect"><i class="icon-font">&#xe008;</i>用户管理</a></li>
                         <li><a href="/Shop/manage/admin_cateselect"><i class="icon-font">&#xe005;</i>分类管理</a></li>
-                        <li><a href="admin_product.jsp"><i class="icon-font">&#xe006;</i>图书管理</a></li>
+                        <li><a href="/Shop/manage/admin_productselect"><i class="icon-font">&#xe006;</i>图书管理</a></li>
                         <li><a href="admin_order.jsp"><i class="icon-font">&#xe004;</i>订单管理</a></li>
                         <li><a href="admin_message.jsp"><i class="icon-font">&#xe012;</i>留言管理</a></li>
                         <li><a href="admin_news.jsp"><i class="icon-font">&#xe052;</i>新闻链接</a></li>

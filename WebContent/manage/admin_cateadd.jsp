@@ -10,8 +10,8 @@
 		<div class="crumb-list">
 			<i class="icon-font"></i><a href="/Shop/manage/admin_index.jsp">首页</a>
 			<span class="crumb-step">&gt;</span><a class="crumb-name"
-				href="/Shop/manage/admin_douserselect">用户管理</a><span
-				class="crumb-step">&gt;</span><span>新增作品</span>
+				href="/Shop/manage/admin_cateselect">分类管理</a><span
+				class="crumb-step">&gt;</span><span>新增分类</span>
 		</div>
 	</div>
 	<div class="result-wrap">
@@ -25,7 +25,7 @@
 							<th><i class="require-red">*</i>父级分类：</th>
 							<td><select class="common-text required" id="title"
 								name="parentId">
-									<option value="0" selected="selected">根分类</option>
+									<option value="0" selected="selected" disabled="disabled">根分类</option>
 									<c:forEach var="cate" items="${catelist}">
 										<c:if test="${cate.CATE_PARENT_ID == 0}">
 											<option value="${cate.CATE_ID}">${cate.CATE_NAME}</option>
