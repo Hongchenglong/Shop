@@ -52,9 +52,10 @@ public class DoProductAdd extends HttpServlet {
 		
 		// 获取上传的文件名称
 		String fname = f.getFileName();
-		System.out.println(fname);
+//		System.out.println(fname);
 		try {
 			su.save("images/product");
+			// 上传的图片保存在E:\Java\Eclipse\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\Shop\images\product
 		} catch (ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

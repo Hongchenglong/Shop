@@ -33,30 +33,19 @@
 				</div>
 			</div>
 			<div class="result-content">
-				<table class="result-tab" width="100%">
+				<table class="result-tab" width="60%">
 					<tr>
 						<th>ID</th>
-						<th>分类</th>
+						<th>商品名称</th>
 						<th>操作</th>
 					</tr>
 					<!-- jstl标签 -->
-					<c:forEach var="cate" items="${catelist}">
-						<c:if test="${cate.CATE_PARENT_ID == 0}">
-							<tr>
-								<td>${cate.CATE_ID}</td>
-								<td>|-${cate.CATE_NAME}</td>
-								<td><a href="admin_tocateupdate?id=${cate.CATE_ID}">修改</a> <a href="javascript:catedel(${cate.CATE_ID})">删除</a></td>
-							</tr>
-							<c:forEach var="zcate" items="${catelist}">
-								<c:if test="${zcate.CATE_PARENT_ID == cate.CATE_ID}">
-									<tr>
-										<td>${zcate.CATE_ID}</td>
-										<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|-${zcate.CATE_NAME}</td>
-										<td><a href="admin_tocateupdate?id=${zcate.CATE_ID}">修改</a> <a href="javascript:catedel(${zcate.CATE_ID})">删除</a></td>
-									</tr>
-								</c:if>
-							</c:forEach>
-						</c:if>
+					<c:forEach var="p" items="${plist}">
+						<tr>
+						<td>${p.PRODUCT_ID}</td>
+						<td><img src="../images/product/${p.PRODUCT_FILENAME}" width="80" height="90">${p.PRODUCT_NAME}</td>
+						<td><a href="">修改</a> <a href="">删除</a></td>
+						</tr>
 						<script>
 							function catedel(id) {
 								if (confirm("确定要删除这个分类吗？")) {
@@ -64,7 +53,6 @@
 								}
 							}
 						</script>
-
 						</tr>
 					</c:forEach>
 				</table>
