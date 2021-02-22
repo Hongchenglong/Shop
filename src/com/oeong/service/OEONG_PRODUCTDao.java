@@ -156,4 +156,39 @@ public class OEONG_PRODUCTDao {
 		}
 		return p;
 	}
+	
+	public static ArrayList<OEONG_PRODUCT> selectAllById(ArrayList<Integer> ids) {
+		ArrayList<OEONG_PRODUCT> lastlylist = new ArrayList<OEONG_PRODUCT>();
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			for (Integer id : ids) {
+				String sql = "select * from OEONG_PRODUCT where PRODUCT_ID=?";
+				ps = conn.prepareStatement(sql);
+				ps.setInt(1, id);
+				rs = ps.executeQuery();
+
+				while (rs.next()) {
+					OEONG_PRODUCT p = new OEONG_PRODUCT(
+							rs.getInt("PRODUCT_ID"),
+							rs.getString("PRODUCT_NAME"),
+							rs.getString("PRODUCT_DESCRIPTION"),
+							rs.getInt("PRODUCT_PRICE"),
+							rs.getInt("PRODUCT_STOCK"),
+							rs.getInt("PRODUCT_FID"),
+							rs.getInt("PRODUCT_CID"),
+							rs.getString("PRODUCT_FILENAME")
+							);
+					lastlylist.add(p);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return lastlylist;
+	}
 }

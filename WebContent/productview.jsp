@@ -349,9 +349,7 @@
 				<div class="likeList clearfix">
 					<div>
 
-
 						<c:forEach var="lp" items="${lastlylist }">
-
 							<a href="selectproductview?id=${lp.PRODUCT_ID }">
 								<dl>
 									<dt>
