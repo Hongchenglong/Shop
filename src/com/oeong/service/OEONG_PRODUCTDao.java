@@ -124,4 +124,36 @@ public class OEONG_PRODUCTDao {
 		}
 		return list;
 	}
+	
+	public static OEONG_PRODUCT selectById(int id) {
+		OEONG_PRODUCT p = null;
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "select * from OEONG_PRODUCT where PRODUCT_ID=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				p = new OEONG_PRODUCT(
+						rs.getInt("PRODUCT_ID"),
+						rs.getString("PRODUCT_NAME"),
+						rs.getString("PRODUCT_DESCRIPTION"),
+						rs.getInt("PRODUCT_PRICE"),
+						rs.getInt("PRODUCT_STOCK"),
+						rs.getInt("PRODUCT_FID"),
+						rs.getInt("PRODUCT_CID"),
+						rs.getString("PRODUCT_FILENAME")
+						);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return p;
+	}
 }
