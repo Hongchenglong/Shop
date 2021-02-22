@@ -85,10 +85,7 @@
 	<script>
 		function shopAdd(id, url) {
 			var count = document.getElementById("count").innerHTML;
-
-			location.href = 'cartadd?id=' + id + '&count=' + count + '&url='
-					+ url;
-
+			location.href = 'cartadd?id=' + id + '&count=' + count + '&url=' + url;
 		}
 	</script>
 
