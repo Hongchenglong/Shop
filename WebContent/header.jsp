@@ -5,7 +5,7 @@
 	<div class="wrapper clearfix">
 		<div class="clearfix" id="top">
 			<h1 class="fl">
-				<a href="index.jsp"><img src="img/logo.png" /></a>
+				<a href="indexselect"><img src="img/logo.png" /></a>
 			</h1>
 			<div class="fr clearfix" id="top1">
 				<p class="fl">
@@ -17,7 +17,7 @@
 
 					<c:if test="${isLogin == 1}">
 						<b>你好：</b>
-						<a href="index.jsp" id="login">${name.USER_NAME}</a>
+						<a href="indexselect" id="login">${name.USER_NAME}</a>
 					</c:if>
 
 					<%--  <c:if test="${isAdminLogin == 1}">
@@ -33,7 +33,7 @@
 						class="er1"><img src="img/ewm.png" /></a>
 
 					<c:if test="${isLogin == 1}">
-						<a href="cart.html"><img src="img/gwc.png" /></a>
+						<a href="showcart"><img src="img/gwc.png" /></a>
 					</c:if>
 
 					<p>
