@@ -35,6 +35,17 @@ public class SelectProductView extends HttpServlet {
 			request.setAttribute("p", p);
 		}
 		
+		if(p!=null) {
+			int cid = p.getPRODUCT_CID();
+			
+			ArrayList<OEONG_PRODUCT> classlist = OEONG_PRODUCTDao.selectByCid(cid);
+			request.setAttribute("classlist", classlist);
+			
+			OEONG_CATEGORY cate = OEONG_CATEGORYDao.selectById(cid);
+			request.setAttribute("cate", cate);
+			
+		}
+		
 		request.getRequestDispatcher("productview.jsp").forward(request, response);
 	}
 }
