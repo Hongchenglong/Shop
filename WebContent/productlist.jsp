@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -32,6 +33,17 @@
     </div>
 </div><!----------------proList------------------------->
 <ul class="proList wrapper clearfix">
+
+	<c:forEach var="list" items="${list}">
+	<li><a href="selectproductview?id=${list.PRODUCT_ID}">
+        <dl>
+            <dt><img src="images/product/${list.PRODUCT_FILENAME}"></dt>
+            <dd>${list.PRODUCT_NAME}</dd>
+            <dd>￥${list.PRODUCT_PRICE}.00</dd>
+        </dl>
+    </a></li>
+	</c:forEach>
+
     <li><a href="proDetail.html">
         <dl>
             <dt><img src="img/temp/pro01.jpg"></dt>

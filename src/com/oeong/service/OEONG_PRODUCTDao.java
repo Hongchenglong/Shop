@@ -35,8 +35,73 @@ public class OEONG_PRODUCTDao {
 
 		try {
 			String sql = "select * from OEONG_PRODUCT";
-				ps = conn.prepareStatement(sql);
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
 
+			while (rs.next()) {
+				OEONG_PRODUCT p = new OEONG_PRODUCT(
+						rs.getInt("PRODUCT_ID"),
+						rs.getString("PRODUCT_NAME"),
+						rs.getString("PRODUCT_DESCRIPTION"),
+						rs.getInt("PRODUCT_PRICE"),
+						rs.getInt("PRODUCT_STOCK"),
+						rs.getInt("PRODUCT_FID"),
+						rs.getInt("PRODUCT_CID"),
+						rs.getString("PRODUCT_FILENAME")
+						);
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public static ArrayList<OEONG_PRODUCT> selectByFid(int fid) {
+		ArrayList<OEONG_PRODUCT> list = new ArrayList<OEONG_PRODUCT>();
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "select * from OEONG_PRODUCT where PRODUCT_FID=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, fid);
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				OEONG_PRODUCT p = new OEONG_PRODUCT(
+						rs.getInt("PRODUCT_ID"),
+						rs.getString("PRODUCT_NAME"),
+						rs.getString("PRODUCT_DESCRIPTION"),
+						rs.getInt("PRODUCT_PRICE"),
+						rs.getInt("PRODUCT_STOCK"),
+						rs.getInt("PRODUCT_FID"),
+						rs.getInt("PRODUCT_CID"),
+						rs.getString("PRODUCT_FILENAME")
+						);
+				list.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return list;
+	}
+	
+	public static ArrayList<OEONG_PRODUCT> selectByCid(int cid) {
+		ArrayList<OEONG_PRODUCT> list = new ArrayList<OEONG_PRODUCT>();
+		ResultSet rs = null;
+		PreparedStatement ps = null;
+		Connection conn = Basedao.getconn();
+
+		try {
+			String sql = "select * from OEONG_PRODUCT where PRODUCT_CID=?";
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, cid);
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
