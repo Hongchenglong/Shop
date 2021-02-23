@@ -45,4 +45,37 @@ public class OEONG_CARTDao {
 		return list;
 	}
 
+	public static OEONG_CART getCartShop(String uid, String pid) {
+		OEONG_CART es = null;
+		ResultSet rs = null; // 结果集
+		PreparedStatement ps = null; // 预处理
+		Connection conn = Basedao.getconn(); // 获取连接对象
+
+		try {
+			String sql = "select * from OEONG_CART where CART_U_ID=? "
+					+ "and CART_P_ID=? and CART_VALID=1 order by CART_ID desc";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, uid);
+			ps.setInt(2, Integer.parseInt(pid));
+			rs = ps.executeQuery();
+
+			while (rs.next()) {
+				es = new OEONG_CART(rs.getInt("cart_id"), rs.getString("cart_p_filename"), rs.getString("cart_p_name"),
+						rs.getInt("cart_p_price"), rs.getInt("cart_quantity"), rs.getInt("cart_p_stock"),
+						rs.getInt("cart_p_id"), rs.getString("cart_u_id"), rs.getInt("cart_valid"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			Basedao.closeall(rs, ps, conn);
+		}
+		return es;
+	}
+	
+	public static int updatenum(int esid, int count) {
+		String sql = "update OEONG_CART set cart_quantity=? where cart_id=?";
+		Object[] params = {count, esid};
+		return Basedao.exectuIUD(sql, params);
+	}
+	
 }

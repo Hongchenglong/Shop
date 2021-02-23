@@ -31,7 +31,7 @@ public class CartAdd extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 
 		OEONG_PRODUCT p = null;
-		String id = request.getParameter("id");
+		String pid = request.getParameter("id"); // 商品id
 		String count = request.getParameter("count");
 		String url = request.getParameter("url");
 
@@ -41,12 +41,23 @@ public class CartAdd extends HttpServlet {
 
 		if (user != null && isLogin.equals("1")) {
 			String uid = user.getUSER_ID();
-			if (id != null) {
-				p = OEONG_PRODUCTDao.selectById(Integer.parseInt(id));
-				OEONG_CART cart = new OEONG_CART(
-						0, p.getPRODUCT_FILENAME(), p.getPRODUCT_NAME(), p.getPRODUCT_PRICE(),
-						Integer.parseInt(count), p.getPRODUCT_STOCK(), p.getPRODUCT_ID(), uid, 1);
-				OEONG_CARTDao.insert(cart);
+			
+			// 通过用户ID和购物车中的商品ID 查看有无此记录
+			OEONG_CART srcsp = OEONG_CARTDao.getCartShop(uid, pid);
+			if (srcsp != null) { // 源商品
+				int srccount = srcsp.getCart_quantity();
+				int newcount = srccount + Integer.parseInt(count);
+				
+				if (newcount > 5) newcount = 5;
+				OEONG_CARTDao.updatenum(srcsp.getCart_id(), newcount);
+			} else {
+				if (pid != null) {
+					p = OEONG_PRODUCTDao.selectById(Integer.parseInt(pid));
+					OEONG_CART cart = new OEONG_CART(
+							0, p.getPRODUCT_FILENAME(), p.getPRODUCT_NAME(), p.getPRODUCT_PRICE(),
+							Integer.parseInt(count), p.getPRODUCT_STOCK(), p.getPRODUCT_ID(), uid, 1);
+					OEONG_CARTDao.insert(cart);
+				}
 			}
 		} else {
 			PrintWriter out = response.getWriter();
@@ -61,7 +72,7 @@ public class CartAdd extends HttpServlet {
 		if (url.equals("z")) {
 			response.sendRedirect("showcart");
 		} else {
-			response.sendRedirect("selectproductview?id=" + id);
+			response.sendRedirect("selectproductview?id=" + pid);
 		}
 
 	}
