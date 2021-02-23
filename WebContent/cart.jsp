@@ -120,8 +120,8 @@
 			<c:forEach var="rs" items="${requestScope.shoplist }">
 				<div class="th">
 					<div class="pro clearfix">
-						<label class="fl"> <input name="ck" type="checkbox"
-							value="${rs.cart_id }" /> <span></span>
+						<label class="fl"> 
+						<input name="ck" type="checkbox" value="${rs.cart_id }" /> <span></span>
 						</label><a class="fl" href="selectproductview?id=${rs.cart_p_id }">
 							<dl class="clearfix">
 								<dt class="fl">
@@ -156,14 +156,16 @@
 				空空如也~<a href="indexselect">去逛逛</a>
 			</div>
 			<div class="tr clearfix">
-				<label class="fl"> <input class="checkAll" type="checkbox" /><span></span></label>
+				<label class="fl"> 
+				<input class="checkAll" type="checkbox" />
+				<span></span></label>
 				<p class="fl">
 					<a href="#">全选</a> <a href="#" class="del">删除</a>
 				</p>
 				<p class="fr">
 					<span>共<small id="sl">0</small>件商品
-					</span><span>合计:&nbsp;<small id="all">￥0.00</small></span> <a
-						href="javascript:toorder()" class="count">结算</a>
+					</span><span>合计:&nbsp;<small id="all">￥0.00</small></span> 
+					<a href="javascript:toorder()" class="count">结算</a>
 				</p>
 			</div>
 		</div>
@@ -171,21 +173,17 @@
 
 	<script>
 		function toorder() {
-			var str = "";
+			var str = ""; // 1,2,3
 			$("input[name='ck']:checked").each(function(index, item) {
 				if ($("input[name='ck']:checked").length - 1 == index) {
-					str += $(this).val();
+					str += $(this).val(); // 最后一位不加,
 				} else {
-					str += $(this).val() + ","
+					str += $(this).val() + ",";
 				}
-
 			});
-
 			location.href = "orderselect?eids=" + str;
 		}
 	</script>
-
-
 
 	<div class="mask"></div>
 	<div class="tipDel">
