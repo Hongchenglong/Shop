@@ -71,11 +71,17 @@ public class OEONG_CARTDao {
 		}
 		return es;
 	}
-	
+
 	public static int updatenum(int esid, int count) {
 		String sql = "update OEONG_CART set cart_quantity=? where cart_id=?";
-		Object[] params = {count, esid};
+		Object[] params = { count, esid };
 		return Basedao.exectuIUD(sql, params);
 	}
-	
+
+	public static int getDeleteDD(int id) {
+		String sql = "delete from OEONG_CART where cart_id=?";
+		Object[] params = { id };
+		return Basedao.exectuIUD(sql, params);
+	}
+
 }

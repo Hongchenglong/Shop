@@ -139,8 +139,8 @@
 					<div class="price">￥${rs.cart_p_price }.00</div>
 					<div class="number">
 						<p class="num clearfix">
-							<img class="fl sub" src="img/temp/sub.jpg"> <span
-								datasrc="${rs.cart_id }" class="fl">${rs.cart_quantity }</span>
+							<img class="fl sub" src="img/temp/sub.jpg"> 
+							<span datasrc="${rs.cart_id }" class="fl">${rs.cart_quantity }</span>
 							<img class="fl add" src="img/temp/add.jpg">
 						</p>
 					</div>

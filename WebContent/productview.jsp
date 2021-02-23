@@ -85,6 +85,7 @@
 	<script>
 		function shopAdd(id, url) {
 			var count = document.getElementById("count").innerHTML;
+			if (url === "s") alert("成功加入购物车");
 			location.href = 'cartadd?id=' + id + '&count=' + count + '&url=' + url;
 		}
 	</script>
